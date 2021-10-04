@@ -21,6 +21,29 @@ class CreateCardsTable extends Migration
                     ->on('topics')
                     ->onDelete('set null');
             $table->timestamps();
+            $table->foreign('videos_id')
+                    ->references('id')
+                    ->on('videos')
+                    ->onDelete('set null')
+                    ->nullable;
+             $table->foreign('texts_id')
+                    ->references('id')
+                    ->on('texts')
+                    ->onDelete('set null')
+                    ->nullable;
+             $table->foreign('lists_id')
+                    ->references('id')
+                    ->on('lists')
+                    ->onDelete('set null')
+                    ->nullable;
+             $table->foreign('tests_id')
+                    ->references('id')
+                    ->on('tests')
+                    ->onDelete('set null')
+                    ->nullable;
+            $table->timestamps();
+
+            
         });
     }
 
