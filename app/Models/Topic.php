@@ -5,16 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Module extends Model
+class Topic extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'title', 'descripcion', 'imaginUrl', 'route', 'topics_id'
+        'title', 'position', 'cards_id'
     ];
 
-    public function topic()
+    public function card()
     {
-        return $this->hasMany(Topic::class);
+        return $this->hasMany(Card::class);
     }
+    
 }
