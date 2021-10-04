@@ -15,7 +15,7 @@ class CreateListsTable extends Migration
     {
         Schema::create('lists', function (Blueprint $table) {
             $table->id();
-            $table->string('videoUrl');
+            $table->string('items');
             $table->string('subTitle');
             $table->unsignedBigInteger('cards_id')->nullable();
             $table->foreign('cards_id')

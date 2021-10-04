@@ -32,7 +32,7 @@ class Card extends Model
         return $this->hasMany(Test::class);
     }
 
-    public function lists()
+    public function lista()
     {
         return $this->hasMany(Lists::class);
     }
