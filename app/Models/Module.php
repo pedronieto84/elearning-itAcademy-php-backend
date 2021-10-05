@@ -5,12 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+use App\Models\Topic;
+
 class Module extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'title', 'descripcion', 'imaginUrl', 'route', 'topics_id'
+        'title', 'description', 'imaginUrl', 'route', 'topics_id'
     ];
 
     public function topic()

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCourseTable extends Migration
+class CreateCoursesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -16,14 +16,14 @@ class CreateCourseTable extends Migration
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('descripcion');
+            $table->string('description');
             $table->string('imaginUrl');
             $table->string('route');
-            $table->unsignedBigInteger('modules_id')->nullable();
-            $table->foreign('modules_id')
-                    ->references('id')
-                    ->on('modules')
-                    ->onDelete('set null');
+            // $table->unsignedBigInteger('modules_id')->nullable();
+            // $table->foreign('modules_id')
+            //         ->references('id')
+            //         ->on('modules')
+            //         ->onDelete('set null');
             $table->unsignedBigInteger('users_id')->nullable();
             $table->foreign('users_id')
                     ->references('id')

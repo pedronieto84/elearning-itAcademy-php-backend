@@ -5,12 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+use App\Models\Topic;
+use App\Models\Video;
+use App\Models\Test;
+use App\Models\Text;
+use App\Models\Lista;
+
 class Card extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'cardType', 'topics_id', 'videos_id', 'texts_id', 'lists_id', 'tests_id'
+        'cardType', 'topics_id', 'videos_id', 'texts_id', 'listas_id', 'tests_id'
     ];
 
     public function topic()
@@ -34,7 +40,7 @@ class Card extends Model
 
     public function lista()
     {
-        return $this->hasMany(Lists::class);
+        return $this->hasMany(Lista::class);
     }
 
 }

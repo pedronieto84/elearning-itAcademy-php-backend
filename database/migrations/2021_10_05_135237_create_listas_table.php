@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateListsTable extends Migration
+class CreateListasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateListsTable extends Migration
      */
     public function up()
     {
-        Schema::create('lists', function (Blueprint $table) {
+        Schema::create('listas', function (Blueprint $table) {
             $table->id();
             $table->string('items');
             $table->string('subTitle');
-            $table->unsignedBigInteger('cards_id')->nullable();
-            $table->foreign('cards_id')
+            $table->unsignedBigInteger('card_id')->nullable();
+            $table->foreign('card_id')
                     ->references('id')
                     ->on('cards')
                     ->onDelete('set null');
@@ -33,6 +33,6 @@ class CreateListsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('lists');
+        Schema::dropIfExists('listas');
     }
 }
