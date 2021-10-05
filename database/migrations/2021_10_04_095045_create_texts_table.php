@@ -16,8 +16,8 @@ class CreateTextsTable extends Migration
         Schema::create('texts', function (Blueprint $table) {
             $table->id();
             $table->string('text');
-            $table->unsignedBigInteger('cards_id')->nullable();
-            $table->foreign('cards_id')
+            $table->unsignedBigInteger('card_id')->nullable();
+            $table->foreign('card_id')
                     ->references('id')
                     ->on('cards')
                     ->onDelete('set null');

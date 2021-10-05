@@ -16,13 +16,13 @@ class CreateModulesTable extends Migration
         Schema::create('modules', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('descripcion');
+            $table->string('description');
             $table->string('imaginUrl');
             $table->string('route');
-            $table->unsignedBigInteger('topics_id')->nullable();
-            $table->foreign('topics_id')
+            $table->unsignedBigInteger('course_id')->nullable();
+            $table->foreign('course_id')
                     ->references('id')
-                    ->on('topics')
+                    ->on('courses')
                     ->onDelete('set null');
             $table->timestamps();
         });

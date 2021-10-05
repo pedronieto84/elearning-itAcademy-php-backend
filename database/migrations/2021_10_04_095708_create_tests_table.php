@@ -17,8 +17,8 @@ class CreateTestsTable extends Migration
             $table->id();
             $table->string('items');
             $table->string('subTitle');
-            $table->unsignedBigInteger('cards_id')->nullable();
-            $table->foreign('cards_id')
+            $table->unsignedBigInteger('card_id')->nullable();
+            $table->foreign('card_id')
                     ->references('id')
                     ->on('cards')
                     ->onDelete('set null');
