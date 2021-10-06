@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 
+use App\Models\User;
 use App\Models\Course;
 use App\Models\Module;
 use App\Models\Topic;
@@ -22,6 +23,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+
+        User::factory(10)->create();
         // Creates 5 courses with its corresponding Modules, Topics, Cards and Resources.
         Course::factory(5)
         ->create()
