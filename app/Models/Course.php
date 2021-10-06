@@ -13,7 +13,7 @@ class Course extends Model
     use HasFactory;
 
     protected $fillable = [
-        'title', 'description', 'imaginUrl', 'route', 'modules_id', 'users_id'
+        'title', 'description', 'imaginUrl', 'route', 'users_id'
     ];
 
     public function user()

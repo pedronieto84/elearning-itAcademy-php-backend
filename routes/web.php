@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\TopicController;
+use App\Http\Controllers\CardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,3 +36,17 @@ Route::get('/getModule/{id}', [ModuleController::class, 'getModule' ]);
 Route::post('/createModule', [ModuleController::class, 'createModule' ]);
 Route::put('/updateModule/{id}', [ModuleController::class, 'updateModule' ]);
 Route::delete('/deleteModule/{id}', [ModuleController::class, 'deleteModule' ]);
+
+//Topic
+Route::get('/getTopics', [TopicController::class, 'getTopics' ]);
+Route::get('/getTopic/{id}', [TopicController::class, 'getTopic' ]);
+Route::post('/createTopic', [TopicController::class, 'createTopic' ]);
+Route::put('/updateTopic/{id}', [TopicController::class, 'updateTopic' ]);
+Route::delete('/deleteTopic/{id}', [TopicController::class, 'deleteTopic' ]);
+
+//Card
+Route::get('/getCards', [CardController::class, 'getCards' ]);
+Route::get('/getCard/{id}', [CardController::class, 'getCard' ]);
+Route::post('/createCard', [CardController::class, 'createCard' ]);
+Route::put('/updateCard/{id}', [CardController::class, 'updateCard' ]);
+Route::delete('/deleteCard/{id}', [CardController::class, 'deleteCard' ]);

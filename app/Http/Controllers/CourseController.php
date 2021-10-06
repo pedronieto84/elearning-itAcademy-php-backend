@@ -3,33 +3,84 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Course;
 
 class CourseController extends Controller
 {
 
     public function getCourses()
     {
-        return response()->json(['title' => 'getCourses']);
+        try {
+            return response()->json(['courses' => Course::all()]);
+
+        } catch (\Exception $exception) {
+            return response()->json(['error' => $exception->getMessage()]);
+        };
+        
     }
 
     public function getCourse($id)
     {
-        return response()->json(['title' => 'getCourse']);
+        try {
+            return response()->json(['course' => Course::find($id)]);
+
+        } catch (\Exception $exception) {
+            return response()->json(['error' => $exception->getMessage()]);
+        };
     }
 
     public function createCourse(Request $request)
     {
-        return response()->json(['title' => 'createCourse']);
+        $validated = $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'imaginUrl' => 'required',
+            'route' => 'required',
+        ]);
+
+        try {
+
+            $course = Course::create($request->all());
+
+            return response()->json(['course succesfully created' => $course]);
+
+        } catch (\Exception $exception) {
+            return response()->json(['error' => $exception->getMessage()]);
+        };
     }
 
     public function updateCourse(Request $request, $id)
     {
-        return response()->json(['title' => 'updateCourse']);
+
+        $validated = $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'imaginUrl' => 'required',
+            'route' => 'required',
+        ]);
+
+        try {
+
+            $course = Course::where('id', $id)->first();
+            $course->update($request->all());
+            return response()->json(['course succesfully updated' => $course]);
+
+        } catch (\Exception $exception) {
+            return response()->json(['error' => $exception->getMessage()]);
+        };
     }
 
     public function deleteCourse($id)
     {
-        return response()->json(['title' => 'deleteCourse']);
+        try {
+
+            $course = Course::find($id)->delete();
+            return response()->json(['course deleted' => true]);
+
+        } catch (\Exception $exception) {
+            return response()->json(['error' => $exception->getMessage()]);
+        };
+        
     }
 
 }
