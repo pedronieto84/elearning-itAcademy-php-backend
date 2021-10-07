@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 use App\Models\Course;
 use App\Models\Module;
 use App\Models\Topic;
+use App\Models\Video;
+use App\Models\Lista;
+use App\Models\Test;
+use App\Models\Text;
 
 
 class ModuleController extends Controller
@@ -25,9 +29,46 @@ class ModuleController extends Controller
 
     public function getModule($id)
     {
+
+
         try {
             $module = Module::find($id);
-            return response()->json(['module' => $module, 'topics' => Topic::where('module_id', $id)->get()]);
+            
+            $allTopics = Topic::where('module_id', $id)->get();
+
+
+            // It will include the topic and its cardType (along with the card type info)
+            function topicCard($topicsArray)
+            {
+               
+                $arrayTopicCard = array();
+
+                foreach ( $topicsArray as $top) {
+
+                    if ( $top->cardType == 'video') {
+                        $card = Video::find($top->video_id);
+                    } elseif ( $top->cardType == 'lista' ) {
+                        $card = Lista::find($top->lista_id);
+                    } elseif ( $top->cardType == 'test' ) {
+                        $card = Test::find($top->test_id);
+                    } elseif ($top->cardType == 'text') {
+                        $card = Text::find($top->text_id);
+                    } else {
+                        $card = 'no match';
+                    }
+
+                    array_push($arrayTopicCard, array('topic' => $top, 'card' => $card));
+                }
+
+                return $arrayTopicCard;
+            }
+
+            $topics = topicCard($allTopics);
+
+            return response()->json([
+                'module' => $module,
+                'topics' => $topics,
+            ]);
 
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()]);
