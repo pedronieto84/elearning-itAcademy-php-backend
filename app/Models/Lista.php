@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-use App\Models\Card;
+use App\Models\Topic;
 
 class Lista extends Model
 {
@@ -13,11 +13,11 @@ class Lista extends Model
 
     
      protected $fillable = [
-        'items', 'subTitle', 'cards_id'
+        'items', 'subTitle', 'topics_id'
     ];
 
-    public function card()
+    public function topic()
     {
-        return $this->belongsTo(Card::class);
+        return $this->belongsTo(Topic::class);
     }
 }

@@ -5,19 +5,36 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-use App\Models\Card;
+use App\Models\Video;
+use App\Models\Test;
+use App\Models\Text;
+use App\Models\Lista;
 
 class Topic extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'title', 'position', 'cards_id'
+        'title', 'position', 'topics_id'
     ];
 
-    public function card()
+    public function video()
     {
-        return $this->hasMany(Card::class);
+        return $this->hasOne(Video::class);
+    }
+    
+    public function text()
+    {
+        return $this->hasOne(Text::class);
+    }
+    public function test()
+    {
+        return $this->hasOne(Test::class);
+    }
+
+    public function lista()
+    {
+        return $this->hasOne(Lista::class);
     }
     
 }

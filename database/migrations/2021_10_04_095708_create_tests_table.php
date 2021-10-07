@@ -16,11 +16,13 @@ class CreateTestsTable extends Migration
         Schema::create('tests', function (Blueprint $table) {
             $table->id();
             $table->string('items');
+            $table->string('title');
+            $table->string('question');
             $table->string('subTitle');
-            $table->unsignedBigInteger('card_id')->nullable();
-            $table->foreign('card_id')
+            $table->unsignedBigInteger('topic_id')->nullable();
+            $table->foreign('topic_id')
                     ->references('id')
-                    ->on('cards')
+                    ->on('topics')
                     ->onDelete('set null');
             $table->timestamps();
         });

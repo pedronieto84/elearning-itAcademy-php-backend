@@ -17,11 +17,16 @@ class CreateTopicsTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('position');
+            $table->string('cardType');
             $table->unsignedBigInteger('module_id')->nullable();
             $table->foreign('module_id')
                     ->references('id')
                     ->on('modules')
                     ->onDelete('set null');
+            $table->unsignedBigInteger('lista_id')->nullable();
+            $table->unsignedBigInteger('video_id')->nullable();
+            $table->unsignedBigInteger('text_id')->nullable();
+            $table->unsignedBigInteger('test_id')->nullable();
             $table->timestamps();
         });
     }

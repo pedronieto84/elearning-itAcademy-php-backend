@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Topic;
+use App\Models\Lista;
+use App\Models\Test;
+use App\Models\Text;
+use App\Models\Video;
 use Illuminate\Http\Request;
 
 class TopicController extends Controller
@@ -22,7 +26,14 @@ class TopicController extends Controller
     public function getTopic($id)
     {
         try {
-            return response()->json(['topic' => Topic::find($id)]);
+
+            return response()->json([
+                'topic' => Topic::find($id),
+                'lista' => Lista::where('topic_id', $id)->get(),
+                'test' => Test::where('topic_id', $id)->get(),
+                'text' => Text::where('topic_id', $id)->get(),
+                'video' => Video::where('topic_id', $id)->get(),
+            ]);
 
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()]);
