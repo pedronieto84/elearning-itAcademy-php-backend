@@ -22,7 +22,7 @@ class TextFactory extends Factory
     public function definition()
     {
         return [
-            'text' => $this->faker->text(100),
+            'text' => $this->faker->text(20),
         ];
     }
 }
