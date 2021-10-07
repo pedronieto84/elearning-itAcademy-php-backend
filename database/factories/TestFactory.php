@@ -22,8 +22,10 @@ class TestFactory extends Factory
     public function definition()
     {
         return [
-            'items' => $this->faker->sentence(rand(2,5)),
+            'items' => $this->faker->sentence(rand(2,4)),
+            'title' => $this->faker->word(),
             'subTitle' => $this->faker->word(),
+            'question' => $this->faker->sentence(3),
         ];
     }
 }

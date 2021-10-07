@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\Course;
 use App\Models\Module;
+use App\Models\Topic;
+
 
 class ModuleController extends Controller
 {
@@ -23,7 +26,8 @@ class ModuleController extends Controller
     public function getModule($id)
     {
         try {
-            return response()->json(['module' => Module::find($id)]);
+            $module = Module::find($id);
+            return response()->json(['module' => $module, 'topics' => Topic::where('module_id', $id)->get()]);
 
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()]);

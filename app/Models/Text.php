@@ -5,18 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-use App\Models\Card;
+use App\Models\Topic;
 
 class Text extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'text', 'cards_id'
+        'text', 'topics_id'
     ];
 
-    public function card()
+    public function topic()
     {
-        return $this->belongsTo(Card::class);
+        return $this->belongsTo(Topic::class);
     }
 }

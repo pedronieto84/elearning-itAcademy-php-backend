@@ -16,10 +16,10 @@ class CreateTextsTable extends Migration
         Schema::create('texts', function (Blueprint $table) {
             $table->id();
             $table->string('text');
-            $table->unsignedBigInteger('card_id')->nullable();
-            $table->foreign('card_id')
+            $table->unsignedBigInteger('topic_id')->nullable();
+            $table->foreign('topic_id')
                     ->references('id')
-                    ->on('cards')
+                    ->on('topics')
                     ->onDelete('set null');
             $table->timestamps();
         });

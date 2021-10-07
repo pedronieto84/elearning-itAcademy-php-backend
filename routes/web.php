@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\TopicController;
-use App\Http\Controllers\CardController;
+
 use App\Http\Controllers\VideoController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\TextController;
@@ -65,12 +65,6 @@ Route::post('/createTopic', [TopicController::class, 'createTopic' ]);
 Route::put('/updateTopic/{id}', [TopicController::class, 'updateTopic' ]);
 Route::delete('/deleteTopic/{id}', [TopicController::class, 'deleteTopic' ]);
 
-//Card
-Route::get('/getCards', [CardController::class, 'getCards' ]);
-Route::get('/getCard/{id}', [CardController::class, 'getCard' ]);
-Route::post('/createCard', [CardController::class, 'createCard' ]);
-Route::put('/updateCard/{id}', [CardController::class, 'updateCard' ]);
-Route::delete('/deleteCard/{id}', [CardController::class, 'deleteCard' ]);
 
 //Video
 Route::get('/getVideos', [VideoController::class, 'getVideos' ]);

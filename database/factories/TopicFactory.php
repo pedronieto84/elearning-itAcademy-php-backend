@@ -24,6 +24,7 @@ class TopicFactory extends Factory
         return [
             'title' => $this->faker->sentence(2),
             'position' => $this->faker->randomDigit(),
+            'cardType' => $this->faker->randomElement(['video', 'test', 'text', 'lista']),
         ];
     }
 }

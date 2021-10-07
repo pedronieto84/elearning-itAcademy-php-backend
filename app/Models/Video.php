@@ -5,19 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-use App\Models\Card;
+use App\Models\Topic;
 
 class Video extends Model
 {
     use HasFactory;
 
      protected $fillable = [
-        'videoUrl', 'subTitle', 'cards_id'
+        'videoUrl', 'subTitle', 'topics_id'
     ];
 
-    public function card()
+    public function topic()
     {
-        return $this->belongsTo(Card::class);
+        return $this->belongsTo(Topic::class);
     }
 
 }
