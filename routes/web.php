@@ -94,3 +94,5 @@ Route::post('/createLista', [ListaController::class, 'createLista' ]);
 Route::put('/updateLista/{id}', [ListaController::class, 'updateLista' ]);
 Route::delete('/deleteLista/{id}', [ListaController::class, 'deleteLista' ]);
 
+//Registre Usuari
+Route::post('/register', [UserController::class, 'register' ]);
