@@ -97,18 +97,18 @@ class ModuleController extends Controller
 
     public function updateModule(Request $request, $id)
     {
-        dd($request);
+  
         $validated = $request->validate([
             'title' => 'required',
             'description' => 'required',
             'imaginUrl' => 'required',
             'route' => 'required',
         ]);
-     
+
         try {
 
             $module = Module::where('id', $id)->first();
-
+       
             $module->update($request->all());
             return response()->json(['module succesfully updated' => $module]);
 
