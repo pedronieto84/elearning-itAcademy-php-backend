@@ -29,19 +29,14 @@ class UserLoginController extends Controller
 
         //This will return true or false based on whether or not the password matches.
             if(!$user || !Hash::check('password',$datoS[2])){
-            return response(['status'=>false,'message'=>'invalid email or password'],401);
+            return response(['message'=>'invalid email or password'],401);
         }
 
         //create token
        
 
         $response = [
-            'status'=>true,
-            'message'=>'Login successful!',
-            'data' =>[
-                'user'=>$user,
-               
-            ]
+        'user'=>$user->email,'password' => $user->password   
         ];
         return response($response,201);
 }
