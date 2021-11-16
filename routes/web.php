@@ -11,6 +11,7 @@ use App\Http\Controllers\VideoController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\TextController;
 use App\Http\Controllers\ListaController;
+use App\Http\Controllers\UserController;
 
 use Inertia\Inertia;
 

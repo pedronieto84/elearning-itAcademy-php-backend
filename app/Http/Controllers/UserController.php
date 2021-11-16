@@ -15,13 +15,15 @@ class UserController extends Controller
     $validator = Validator::make($request->only('userName','email','password'), [
         'userName' => 'required|min:4',
         'email'=>'required|email|unique:App\Models\User,email',
-        'password' => 'required|min:6'
+        'password' => 'required|min:5|max:10'
     ],
     [
         'required' => 'Missing :attribute input',
         'email' => 'Email format invalid',
         'unique' => 'This email is already existing',
-        'password.min' => 'Password must be 6 characters long'
+        'userName.min' => 'User Name too short',
+        'password.min' => 'Password must be at least 5 characters long',
+        'password.max' => 'Password must be 10 characters long at maximum'
     ]);
 
     //En cas d'error, retorna l'error
@@ -33,9 +35,10 @@ class UserController extends Controller
     
     //Creació d'usuari
     $user = User::create([
-        'userName' => $validator->userName,
-        'email' => $validator->email,
-        'password' => $validator->password
+        'userName' => $request->userName,
+        'email' => $request->email,
+        'password' => $request->password,
+        'userScore' => 0
     ]);
 
     //En cas de que funcioni, retorna l'usuari
