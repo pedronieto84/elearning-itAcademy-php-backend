@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 //mod
 use App\Models\User;
+use App\Models\Reto;
 
 class ChallengeController extends Controller
 {
@@ -21,20 +22,21 @@ class ChallengeController extends Controller
         $temario = $data["temario"];
         //dd ($data["usuarioRetado"]);
 
-        // === validar que los 2 usuarios existen
+        // === Validar que los 2 usuarios existen
         $user1 = User::where("id", $usuarioQueReta)->count();
-        $user2 = User::where("id", $usuarioRetado)->count();
         if ($user1){
             //return "user 1 existe";
         } else {
             return "user 1 NO existe";
         }
+        $user2 = User::where("id", $usuarioRetado)->count();
         if ($user2){
             //return "user 1 existe";
         } else {
             return "user 2 NO existe";
         }
-        // === validar que usuario que reta y el retado son diferentes
+
+        // === Validar que usuario que reta y el retado son diferentes
         if ($usuarioQueReta <> $usuarioRetado) {
             //return "usuarios diferentes";
         } else {
@@ -64,10 +66,26 @@ class ChallengeController extends Controller
 
         //=== Genera new reg tbl retos
         //add registro
-
-        //quitar del que reta y retado los puntos
+        $reto = Reto::create([
+            'usuarioQueReta' => $usuarioQueReta,
+            'usuarioRetado' => $usuarioRetado,
+            'puntosApostados' => $puntosApostados,
+            'temario' => $temario,
+            'statusReto' => 'pendiente',
+          ]);
+          
+        // === Quitar del que reta y retado los puntos
         //update registro
-        
+        //dd(getType($usuarioQueReta));
+        $usu = User::where("id", $usuarioQueReta)->get(['userScore'])->first();
+        $newUserScore = $usu['userScore'] -1;
+
+        //dd($newUserScore);
+
+        $usu->userScore = $newUserScore;
+        $usu->save();
+
+
         return "ok";
         
     }
