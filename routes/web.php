@@ -13,6 +13,7 @@ use App\Http\Controllers\TestController;
 use App\Http\Controllers\TextController;
 use App\Http\Controllers\ListaController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ChallengeController;
 
 use Inertia\Inertia;
 
@@ -103,5 +104,9 @@ Route::delete('/deleteLista/{id}', [ListaController::class, 'deleteLista' ]);
 //Registre Usuari
 Route::post('/register', [UserController::class, 'register' ]);
 
+//Challenge
+Route::post('/createChallenge', [ChallengeController::class, 'registerChallenge' ]);
+
 //resolveChallenge
 Route::get('/getChallenge/{id}', [ChallengeController::class, 'getChallenge']);
+
