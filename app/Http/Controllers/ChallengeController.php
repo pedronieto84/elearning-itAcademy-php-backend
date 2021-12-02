@@ -75,20 +75,23 @@ class ChallengeController extends Controller
             'statusReto' => 'pendiente',
           ]);
           
-        // === Quitar del que reta y retado los puntos
+        // === Quitar del que reta y retado los puntos apostados
         //update registro
-        //dd(getType($usuarioQueReta));
-        $usu = User::where("id", $usuarioQueReta)->get(['userScore'])->first();
-        $newUserScore = $usu['userScore'] -1;
-
-        //dd($newUserScore);
-
-        $usu->userScore = $newUserScore;
-        $usu->save();
-
-
-        return "ok";
+        $usuUpdt = User::where("id", $usuarioQueReta)->get(['userScore'])->first();
+        $newUserScore = ($usuUpdt->userScore) - 1;
         
+        //return getType($newUserScore);
+        $usuUpdt->userScore = $newUserScore;
+        
+        //opcion 1
+        //$salida = $usuUpdt->save();
+
+        //opcion 2
+        //return getType($usuUpdt);
+        $salida = $usuUpdt->update(toArray($usuUpdt));
+        dd($salida);
+
+        return "ok";        
     }
     
     public function getChallenge(Request $request, $id){
