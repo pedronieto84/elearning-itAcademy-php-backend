@@ -28,20 +28,23 @@ class ChallengeController extends Controller
         if ($user1){
             //return "user 1 existe";
         } else {
-            return "user 1 NO existe";
+            //return "user 1 NO existe";
+            return response()->json (['status' => 'user 1 don t exist'], 409);  
         }
         $user2 = User::where("id", $usuarioRetado)->count();
         if ($user2){
             //return "user 1 existe";
         } else {
-            return "user 2 NO existe";
+            //return "user 2 NO existe";
+            return response()->json (['status' => 'user 2 don t exist'], 409);  
         }
 
         // === Validar que usuario que reta y el retado son diferentes
         if ($usuarioQueReta <> $usuarioRetado) {
             //return "usuarios diferentes";
         } else {
-            return "usuarios iguales";
+            //return "usuarios iguales";
+            return response()->json (['status' => 'user 1 and user 2 are the same'], 409);  
         }
         
         // === Validar que los 2 usuarios tienen al menos 1 punto
@@ -50,19 +53,22 @@ class ChallengeController extends Controller
         if ($user1Score > 0){
             //return "El usuario tiene puntos" . $user1Score;
         } else {
-            return "El usuario 1 NO tiene puntos";
+            //return "El usuario 1 NO tiene puntos";
+            return response()->json (['status' => 'user 1 don t have points available'], 409);  
         }
         $user2 = User::where("id", $usuarioRetado)->get(['userScore'])->first();
         $user2Score = $user2['userScore'];
         if ($user2Score > 0){
             //return "El usuario tiene puntos" . $user1Score;
         } else {
-            return "El usuario 2 NO tiene puntos";
+            // return "El usuario 2 NO tiene puntos";
+            return response()->json (['status' => 'user 2 don t have points available'], 409);  
         }
 
         // === Validar que el temario existe 
         if (strlen($temario) <1 ){
-            return "El temario No Existe";
+            //return "El temario No Existe";
+            return response()->json (['status' => 'temario don t exist'], 409);  
         }
 
         //=== Genera new reg tbl retos
@@ -76,22 +82,19 @@ class ChallengeController extends Controller
           ]);
           
         // === Quitar del que reta y retado los puntos apostados
-        //update registro
-        $usuUpdt = User::where("id", $usuarioQueReta)->get(['userScore'])->first();
+        //update usu que reta
+        $usuUpdt = User::where("id", $usuarioQueReta)->get()->first();
         $newUserScore = ($usuUpdt->userScore) - 1;
-        
-        //return getType($newUserScore);
         $usuUpdt->userScore = $newUserScore;
-        
-        //opcion 1
-        //$salida = $usuUpdt->save();
+        $salida = $usuUpdt->save();
 
-        //opcion 2
-        //return getType($usuUpdt);
-        $salida = $usuUpdt->update(toArray($usuUpdt));
-        dd($salida);
+        //update usu que retado
+        $usuUpdt = User::where("id", $usuarioRetado)->get()->first();
+        $newUserScore = ($usuUpdt->userScore) - 1;
+        $usuUpdt->userScore = $newUserScore;
+        $salida = $usuUpdt->save();
 
-        return "ok";        
+        return response()->json (['status' => 'successful'], 200);    
     }
     
     public function getChallenge(Request $request, $id){
