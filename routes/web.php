@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ChallengeController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 
@@ -46,6 +47,7 @@ Route::get('/dashboard', function () {
 
 
 require __DIR__.'/auth.php';
+
 
 
 
@@ -104,3 +106,7 @@ Route::post('/register', [UserController::class, 'register' ]);
 
 //Challenge
 Route::post('/createChallenge', [ChallengeController::class, 'registerChallenge' ]);
+
+//resolveChallenge
+Route::get('/getChallenge/{id}', [ChallengeController::class, 'getChallenge']);
+
