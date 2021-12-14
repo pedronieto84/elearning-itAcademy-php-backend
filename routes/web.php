@@ -108,7 +108,7 @@ Route::delete('/deleteUser', [UserController::class,'deleteUser']);
 
 
 //Challenge
-Route::delete('/deleteChallenge',[ChallengeController::class, 'deleteChallenge']);
+
 Route::post('/createChallenge', [ChallengeController::class, 'registerChallenge' ]);
 Route::post('/resolveChallenge', [ChallengeController::class, 'resolveChallenge']);     // para Postman (proyecto IT_Academy) 
-
+Route::delete('/deleteChallenge',[ChallengeController::class, 'deleteChallenge']);
