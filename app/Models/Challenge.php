@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Challenge extends Model
 {
     use HasFactory;
-    protected &guarded=['status'];
+    protected $guarded=['status'];
 }

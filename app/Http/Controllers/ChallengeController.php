@@ -4,11 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Challenge;
+use App\Models\Reto;
 use App\Models\User;
 
-
-//mod
-use App\Models\Reto;
 
 class ChallengeController extends Controller
 {
@@ -186,5 +184,33 @@ class ChallengeController extends Controller
             echo "<br>"."<br>";
             return response()->json (['retoexiste'=>"El reto no existe"]);}    
         }
+
+//................................................................................................
+
+    public function deleteChallenge(Request $request)
+    {
+        
+        $idchallenge= $request->input('retoId');
+        $challen = Reto::where('id', '=', $idchallenge);
+
+        if($challen){
+
+            //return response()->json(['error'=> "El reto  existe"]);
+            Reto::where('id', $idchallenge)->delete();
+            //$challen = Challenge::find($challen)->delete();
+
+            
+            return response()->json([
+                'estado' => "Eliminado",
+                'listadoActual'=> Reto::all()
+            ]);
+        }else{
+            return response()->json(['error'=> "El reto no  existe"]);
+        }    
+    }
+
+
+
+
 
 }
