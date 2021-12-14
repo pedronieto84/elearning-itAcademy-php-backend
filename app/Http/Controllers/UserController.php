@@ -60,6 +60,27 @@ class UserController extends Controller
 
     }
 
+//..............................................................................................................
+    public function deleteUser(Request $request)
+    {
+        
+        
+        $idUser= $request->input('id');
+        $user = User::find($idUser);
+
+        if($user){    
+            $user = User::find($idUser)->delete();
+            return response()->json([
+                'estado' => "Eliminado",
+                'listado actual'=> User::all()
+            ]);
+        }else{
+            return response()->json(['error'=> "El usuario no  existe"]);
+        }    
+    }
+
+
+
 }
 
 ?>

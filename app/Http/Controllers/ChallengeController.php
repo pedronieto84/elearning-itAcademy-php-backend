@@ -65,4 +65,28 @@ class ChallengeController extends Controller
             return "El Reto no existe";
         }
         }
+
+//......................................................................................................
+        public function deleteChallenge(Request $request)
+        {
+            
+            
+            $idChallenge= $request->input('id');
+
+            $challenge = Challenge::find($idChallenge);
+            return $challenge;
+    
+            if($challenge){    
+                $challenge = Challenge::find($idChallenge)->delete();
+                return response()->json([
+                    'estado' => "Eliminado",
+                    'listado actual'=> Challenge::all()
+                ]);
+            }else{
+                return response()->json(['error'=> "El reto no existe"]);
+            }    
+        }
+    
+
+
 }

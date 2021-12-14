@@ -103,6 +103,9 @@ Route::delete('/deleteLista/{id}', [ListaController::class, 'deleteLista' ]);
 //Registre Usuari
 Route::post('/register', [UserController::class, 'register' ]);
 Route::get('/getUsers', [UserController::class, 'getUsers']);
+Route::delete('/deleteUser', [UserController::class,'deleteUser']);
+
 
 //resolveChallenge
 Route::get('/getChallenge/{id}', [ChallengeController::class, 'getChallenge']);
+Route::delete('/deleteChallenge',[ChallengeController::class, 'deleteChallenge']);
