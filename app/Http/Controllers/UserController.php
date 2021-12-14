@@ -43,11 +43,23 @@ class UserController extends Controller
 
     //En cas de que funcioni, retorna l'usuari
     return $user;
-   }
 }
 
+//..............................................................................................................
+    public function getusers(Request $request){
+        
+        $email= $request->input('email');
 
+        if($email === "pedro.nieto.sanchez@gmail.com"){
+            return response()->json(['Usuarios' => User::all()]);
+        }else{
+            return response()->json([
+                'message'=> "email : (".$email." ) no autorizado para ver lista de usuarios",
+            ]);            
+        }
 
+    }
 
+}
 
 ?>
