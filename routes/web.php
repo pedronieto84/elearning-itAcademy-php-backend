@@ -13,6 +13,7 @@ use App\Http\Controllers\TestController;
 use App\Http\Controllers\TextController;
 use App\Http\Controllers\ListaController;
 use App\Http\Controllers\UserController;
+//use App\Http\Controllers\ChallengeController;
 
 use Inertia\Inertia;
 
@@ -106,6 +107,8 @@ Route::get('/getUsers', [UserController::class, 'getUsers']);
 Route::delete('/deleteUser', [UserController::class,'deleteUser']);
 
 
-//resolveChallenge
-Route::get('/getChallenge/{id}', [ChallengeController::class, 'getChallenge']);
+//Challenge
 Route::delete('/deleteChallenge',[ChallengeController::class, 'deleteChallenge']);
+Route::post('/createChallenge', [ChallengeController::class, 'registerChallenge' ]);
+Route::post('/resolveChallenge', [ChallengeController::class, 'resolveChallenge']);     // para Postman (proyecto IT_Academy) 
+
