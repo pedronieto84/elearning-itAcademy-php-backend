@@ -185,10 +185,6 @@ class ChallengeController extends Controller
         }else{
             echo "<br>"."<br>";
             return response()->json (['retoexiste'=>"El reto no existe"]);}    
+        }
 
-
-
-    
-
-    }
 }

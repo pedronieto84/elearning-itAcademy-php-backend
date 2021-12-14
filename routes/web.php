@@ -103,8 +103,12 @@ Route::delete('/deleteLista/{id}', [ListaController::class, 'deleteLista' ]);
 
 //Registre Usuari
 Route::post('/register', [UserController::class, 'register' ]);
+Route::get('/getUsers', [UserController::class, 'getUsers']);
+Route::delete('/deleteUser', [UserController::class,'deleteUser']);
+
 
 //Challenge
+Route::delete('/deleteChallenge',[ChallengeController::class, 'deleteChallenge']);
 Route::post('/createChallenge', [ChallengeController::class, 'registerChallenge' ]);
 Route::post('/resolveChallenge', [ChallengeController::class, 'resolveChallenge']);     // para Postman (proyecto IT_Academy) 
 
